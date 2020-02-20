@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.views.generic import CreateView, DeleteView
 from django.views.generic.list import ListView
 
@@ -17,7 +18,7 @@ class JournalEntryListView(LoginRequiredMixin, ListView):
         return JournalEntry.objects.filter(user=self.request.user).order_by('-pub_date')
 
 
-class JournalEntryCreate(CreateView):
+class JournalEntryCreate(LoginRequiredMixin, CreateView):
     success_url = '/journal/'
     model = JournalEntry
     fields = ['title', 'body']
@@ -28,12 +29,20 @@ class JournalEntryCreate(CreateView):
         return super().form_valid(form)
 
 
-class JournalEntryDelete(DeleteView):
+class JournalEntryDelete(LoginRequiredMixin, DeleteView):
     success_url = '/journal/'
     model = JournalEntry
 
+    def get_object(self, queryset=None):
+        journal_entry = super().get_object(queryset)
+        if journal_entry.user != self.request.user:
+            raise PermissionDenied
+        return journal_entry
 
 
+from django.contrib.auth import logout
+
+# TODO
 # class JournalEntryUpdate(UpdateView):
 #     success_url = '/journal/'
 #     model = JournalEntry

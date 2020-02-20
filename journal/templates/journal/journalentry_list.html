@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block title %}Journal Entries{% endblock %}
-{% block header %}<h1 id="title-header">Journal Entries</h1>{% endblock %}
+{% block header %}
+    <div><a href="{% url 'logout' %}">Logout</a></div>
+    <h1 id="title-header">Journal Entries</h1>
+{% endblock %}
 
 {% block main %}
 <div>
