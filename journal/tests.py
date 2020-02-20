@@ -9,6 +9,9 @@ class JournalViewsTestCase(TestCase):
     def test_list_view(self):
         pass
 
+    def test_list_view_ranges(self):
+        pass
+
     def test_delete_view(self):
         pass
 
