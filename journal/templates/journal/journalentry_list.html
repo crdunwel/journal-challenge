@@ -4,17 +4,15 @@
 {% block header %}<h1 id="title-header">Journal Entries</h1>{% endblock %}
 
 {% block main %}
+<div>
+    <button><a href="{% url 'journalentry-list-create' %}">Add New Entry +</a></button>
+</div>
 <ul>
 {% for journalentry in object_list %}
-    <li class="journalentry-item">
-        <h4>
-            {{ journalentry.title }}
-        </h4>
-        <h6>
-            Posted on {{ journalentry.pub_date|date }}
-        </h6>
+    <li>
+        {% include 'journal/journalentry_item.html' with journalentry=journalentry %}
         <p>
-            {{ journalentry.body }}
+            <button><a href="{% url 'journalentry-list-delete' journalentry.pk %}">Delete Entry</a></button>
         </p>
     </li>
     <hr>

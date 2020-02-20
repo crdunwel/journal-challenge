@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Journal Entry{% endblock %}
+{% block header %}<h1 id="title-header">Create Journal Entry</h1>{% endblock %}
+
+{% block main %}
+
+{% include 'journal/journalentry_item.html' with journalentry=object %}
+<div>
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete this entry?</p>
+        <input type="submit" value="Confirm">
+    </form>
+</div>
+
+{% endblock %}

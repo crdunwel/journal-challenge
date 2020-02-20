@@ -7,22 +7,21 @@ h1#title-header {
     text-align: center;
 }
 
-
-li.journalentry-item {
+.journalentry-item {
     list-style-type:none;
 }
 
-li.journalentry-item h4 {
+.journalentry-item h4 {
     margin-bottom: 5px;
 }
 
-li.journalentry-item h6 {
+.journalentry-item h6 {
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 14px;
     font-weight: normal;
 }
 
-li.journalentry-item p {
+.journalentry-item p {
     font-size: 14px;
 }

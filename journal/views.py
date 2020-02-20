@@ -1,7 +1,6 @@
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView
 from django.views.generic.list import ListView
 
-from journal.forms import JournalEntryForm
 from journal.models import JournalEntry
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -15,7 +14,7 @@ class JournalEntryListView(LoginRequiredMixin, ListView):
         return context
 
     def get_queryset(self):
-        return JournalEntry.objects.filter(user=self.request.user)
+        return JournalEntry.objects.filter(user=self.request.user).order_by('-pub_date')
 
 
 class JournalEntryCreate(CreateView):
@@ -27,6 +26,12 @@ class JournalEntryCreate(CreateView):
         obj = form.save(commit=False)
         obj.user = self.request.user
         return super().form_valid(form)
+
+
+class JournalEntryDelete(DeleteView):
+    success_url = '/journal/'
+    model = JournalEntry
+
 
 
 # class JournalEntryUpdate(UpdateView):
