@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Journal Entries{% endblock %}
+{% block header %}<h1 id="title-header">Journal Entries</h1>{% endblock %}
+
+{% block main %}
+<ul>
+{% for journalentry in object_list %}
+    <li class="journalentry-item">
+        <h4>
+            {{ journalentry.title }}
+        </h4>
+        <h6>
+            Posted on {{ journalentry.pub_date|date }}
+        </h6>
+        <p>
+            {{ journalentry.body }}
+        </p>
+    </li>
+    <hr>
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+</ul>
+{% endblock %}
