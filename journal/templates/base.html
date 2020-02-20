@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'journal/css/master.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'journal/css/simple-grid.min.css' %}">
+</head>
+<body>
+<div id="content">
+    <header class="row">
+        {% block header %}{% endblock %}
+    </header>
+    <main class="row">
+        {% block main %}{% endblock %}
+    </main>
+    <footer class="row">
+        {% block footer %}{% endblock %}
+    </footer>
+</div>
+</body>
+</html>
