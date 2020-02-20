@@ -64,13 +64,3 @@ class JournalEntryDelete(LoginRequiredMixin, DeleteView):
         if journal_entry.user != self.request.user:
             raise PermissionDenied
         return journal_entry
-
-
-from django.contrib.auth import logout
-
-# TODO
-# class JournalEntryUpdate(UpdateView):
-#     success_url = '/journal/'
-#     model = JournalEntry
-#     fields = ['title', 'body']
-#
